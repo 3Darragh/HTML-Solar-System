@@ -1,0 +1,25 @@
+#solar_system_container
+{
+    align-items: center;
+    cursor: grab;
+    display: flex;
+    flex: 0 0 66.667%;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#solar_system_container.is_panning
+{
+    cursor: grabbing;
+}
+
+.solar_system
+{
+    --solar-center-x: 50%;
+    --solar-center-y: 50%;
+    height: 80vmin;
+    max-height: 600px;
+    max-width: 600px;
+    position: relative;
+    width: 80vmin;
+}

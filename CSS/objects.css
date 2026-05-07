@@ -1,0 +1,20 @@
+/* Base configs for all objects. */
+.solar_system_object
+{
+    animation: var(--sprite-animation, none);
+    animation-direction: var(--sprite-animation-direction-computed, normal);
+    background-color: var(--planet-color, transparent);
+    background-image: var(--sprite-image, none);
+    background-position: center;
+    background-repeat: var(--planet-bg-repeat, no-repeat);
+    background-size: var(--sprite-background-size, var(--sprite-size, cover));
+    border-radius: 0;
+    image-rendering: pixelated;
+    height: var(--object-model-size, var(--sprite-frame-width, 20px));
+    overflow: hidden;
+    position: absolute;
+    transform: translate(-50%, -50%) scaleX(var(--sprite-flip-scale-x, 1)) scaleY(var(--sprite-flip-scale-y, 1));
+    transform-origin: center;
+    width: var(--object-model-size, var(--sprite-frame-width, 20px));
+    z-index: var(--planet-z, 1);
+}

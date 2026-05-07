@@ -1,0 +1,136 @@
+/* File controls graphical styles for the info panel. */
+
+/* Container for info panel and time slider. */
+#info_panel_container
+{
+    display: flex;
+    flex: 0 0 33.333%;
+    flex-direction: column;  
+    gap: 16px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Info panel back button styles. */
+.info_back_button
+{
+    background: rgba(5, 5, 5, 0.8);
+    border: 5px solid #6f6f6f;
+    border-radius: 0;
+    color: #e6e6e6;
+    cursor: pointer;
+    font: inherit;
+    font-size: 24px;
+    margin-bottom: 12px;
+    padding: 8px 32px;
+}
+
+/* Back button hover and focus styles. */
+.info_back_button:hover,
+.info_back_button:focus-visible
+{
+    background: #2a2a2a;
+    outline: none;
+}
+
+/* Info panel styles. */
+#info_panel
+{
+    font-family: "Jersey 15", sans-serif;
+    background: rgba(5, 5, 5, 0.8);
+    color: #e6e6e6;
+    border: 5px solid #6f6f6f;
+    border-radius: 0;
+    box-shadow: none;
+    flex: 1;
+    overflow: hidden;
+    padding: 20px;
+    text-rendering: geometricPrecision;
+}
+
+/* Info panel h2 styles. */
+#info_panel h2
+{
+    font-size: 48px;
+    line-height: 1;
+    margin: 0 0 8px;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+}
+
+/* Info panel p, td, and label styles. */
+#info_panel p,
+#info_panel td,
+#info_panel label
+{
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+/* Panel line styles. */
+.object_overview .overview_line
+{
+    margin: 0 0 4px;
+    padding-left: 1em;
+    position: relative;
+}
+
+/* Panel bullet style. */
+.object_overview .overview_line::before
+{
+    content: "•";
+    left: 0;
+    position: absolute;
+}
+
+
+/* Box that contains planets within the info panel. */
+.planet_panel
+{
+    --sprite-panel-box-size: 256px;
+
+    align-items: center;
+    display: flex;
+    height: var(--sprite-panel-box-size);
+    justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+/* Displays planet in info panel based on these configs. */
+.planet_panel .solar_system_object--spritesheet
+{
+    background-image: var(--panel-sprite-image, var(--sprite-image));
+    --sprite-model-frame-width: var(--panel-sprite-frame-width, var(--sprite-frame-width));
+    --sprite-model-frame-height: var(--panel-sprite-frame-height, var(--sprite-frame-height));
+    --sprite-animation: spritesheet-frame-x var(--sprite-panel-step-duration) steps(8, end) infinite,
+                       spritesheet-frame-y calc(var(--sprite-panel-step-duration) * 8) steps(8, end) infinite;
+    animation-play-state: running;
+    border-radius: 0;
+    height: var(--sprite-model-frame-height);
+    image-rendering: pixelated;
+    position: relative;
+    transform: rotate(var(--panel-sprite-rotation, 0deg)) scale(var(--sprite-panel-scale)) scaleX(var(--sprite-flip-scale-x, 1)) scaleY(var(--sprite-flip-scale-y, 1));
+    width: var(--sprite-model-frame-width);
+}
+
+/* Planet panel image styles. */
+.planet_panel img,
+.planet_panel .solar_system_object--spritesheet
+{
+    image-rendering: pixelated;
+}
+
+/* Displays single-frame (non-spritesheet) sprites in the info panel.
+   Overrides position and transform from .solar_system_object so the element
+   participates in flex layout instead of being absolutely positioned. */
+.planet_panel .solar_system_object:not(.solar_system_object--spritesheet)
+{
+    border-radius: 0;
+    height: var(--sprite-frame-height);
+    image-rendering: pixelated;
+    position: relative;
+    transform: scale(var(--object-panel-scale, 1));
+    width: var(--sprite-frame-width);
+}

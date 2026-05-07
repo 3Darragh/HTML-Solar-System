@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interactive Solar System</title>
+    <link rel="stylesheet" href="CSS/page.css">
+    <link rel="stylesheet" href="CSS/objects.css">
+    <link rel="stylesheet" href="CSS/spritesheets.css">
+    <link rel="stylesheet" href="CSS/animations.css">
+    <link rel="stylesheet" href="CSS/time.css">
+    <link rel="stylesheet" href="CSS/info_panel.css">
+    <link rel="stylesheet" href="CSS/solar_system.css">
+</head>
+<body>
+    <div id="app_layout">
+        <div id="info_panel_container">
+            <aside id="info_panel" aria-live="polite"></aside>
+            <section id="time_panel"></section>
+        </div>
+        <div id="solar_system_container">
+            <main id="solar_system_root" class="solar_system" aria-label="Interactive solar system"></main>
+        </div>
+    </div>
+    <!-- JS files break if not loaded in the correct sequence. -->
+    <script src="JS/app-state.js" defer></script>
+    <script src="JS/objects.js" defer></script>
+    <script src="JS/descriptions.js" defer></script>
+    <script src="JS/time.js" defer></script>
+    <script src="JS/zoom.js" defer></script>
+    <script src="JS/pan.js" defer></script>
+    <script src="JS/orbits.js" defer></script>
+    <script src="JS/main.js" defer></script>
+</body>
+</html>

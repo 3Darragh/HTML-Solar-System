@@ -1,0 +1,17 @@
+/* Sprite animation defaults to paused until time.js sets 
+--planet-animation-play-state to running. The info panel overrides this
+ to always run, independent of the time slider. */
+.solar_system_object--spritesheet
+{
+	--sprite-animation: none;
+	animation-play-state: var(--planet-animation-play-state, paused);
+}
+
+/* Reduced motion preference enabled by user browser setting. */
+@media (prefers-reduced-motion: reduce)
+{
+	.solar_system_object
+	{
+		--planet-animation: none;
+	}
+}

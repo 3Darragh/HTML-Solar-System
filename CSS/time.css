@@ -1,0 +1,75 @@
+/* UI controls styling for the time scale slider and controls panel. */
+
+/* Time slider styles. */
+#time_panel
+{
+    background: rgba(5, 5, 5, 0.8);
+    border: 5px solid #6f6f6f;
+    border-radius: 0;
+    color: #e6e6e6;
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    position: relative;
+}
+
+/* Label constructed from ::before pseudo-element. */
+#time_panel::before
+{
+    content: "Time Scale Slider: " var(--time-scale-value, "1.0x");
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+}
+
+/* Styles for input range. */
+#time_panel input[type="range"]
+{
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    height: 22px;
+    width: 100%;
+}
+
+/* Firefox styles for input range track. */
+#time_panel input[type="range"]::-moz-range-track
+{
+    background: rgba(5, 5, 5, 0.8);
+    border: 2px solid #6f6f6f;
+    border-radius: 0;
+    height: 8px;
+}
+
+/* Firefox styles for input range thumb. */
+#time_panel input[type="range"]::-moz-range-thumb
+{
+    background: #e6e6e6;
+    border: 2px solid #6f6f6f;
+    border-radius: 0;
+    height: 18px;
+    width: 12px;
+}
+
+/* Webkit styles for input range track. */
+#time_panel input[type="range"]::-webkit-slider-runnable-track
+{
+    background: rgba(5, 5, 5, 0.8);
+    border: 2px solid #6f6f6f;
+    border-radius: 0;
+    height: 8px;
+}
+
+/* Webkit styles for input range thumb. */
+#time_panel input[type="range"]::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e6e6e6;
+    border: 2px solid #6f6f6f;
+    border-radius: 0;
+    height: 18px;
+    margin-top: -7px;
+    width: 12px;
+}

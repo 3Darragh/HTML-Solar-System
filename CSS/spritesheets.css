@@ -1,0 +1,56 @@
+/* Sets the start position of each frame in the spritesheet.
+Uses background-position-x to move horizontally.
+Uses background-position-y to move vertically. 
+*/
+@keyframes spritesheet-frame-x
+{
+    from
+    {
+        background-position-x: 0;
+    }
+    to
+    {
+        background-position-x: calc(var(--sprite-model-frame-width) * 8 * -1);
+    }
+}
+
+@keyframes spritesheet-frame-y
+{
+    from
+    {
+        background-position-y: 0;
+    }
+    to
+    {
+        background-position-y: calc(var(--sprite-model-frame-height) * 8 * -1);
+    }
+}
+
+/* Reads the sprite sheet and displays the correct frame.
+--sprite-animation: Reads the spritesheet and animates it.
+--sprite-frame-height: Frame height.
+--sprite-frame-width: Frame width.
+--sprite-model-frame-height: Display frame height for the simulation.
+--sprite-model-frame-width: Display frame width for the simulation.
+--sprite-model-step-duration: Model sprite animation speed.
+--sprite-panel-scale: Scale of the sprite in the panel.
+--sprite-panel-step-duration: Panel animation speed.
+--sprite-size: Background size for the full spritesheet.
+--sprite-sheet-columns: Number of columns in the sprite sheet.
+--sprite-sheet-rows: Number of rows in the sprite sheet.
+*/
+.solar_system_object--spritesheet
+{
+    background-position: 0px 0px;
+    --sprite-animation: none;
+    --sprite-frame-height: 32px;
+    --sprite-frame-width: 32px;
+    --sprite-model-frame-width: var(--object-model-size, var(--sprite-frame-width));
+    --sprite-model-frame-height: var(--object-model-size, var(--sprite-frame-height));
+    --sprite-model-step-duration: var(--object-model-rotation-speed, 0.8s);
+    --sprite-panel-scale: var(--object-panel-scale, calc(var(--sprite-panel-box-size, 256px) / var(--sprite-frame-width)));
+    --sprite-panel-step-duration: var(--object-panel-rotation-speed, 0.8s);
+    --sprite-size: calc(var(--sprite-model-frame-width) * 8) calc(var(--sprite-model-frame-height) * 8);
+}
+
+ 
