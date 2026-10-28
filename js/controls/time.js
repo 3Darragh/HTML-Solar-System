@@ -1,11 +1,11 @@
+import { solarSystemState } from "../state.js";
+
 function initialize_time_control(config)
 {
     const { slider, value_label } = config;
 
-    const solar_system_state = window.solar_system_state ?? window.solar_system_state;
-
     /* Simulation safety check. */
-    if (!slider || !solar_system_state)
+    if (!slider)
     {
         return;
     }
@@ -16,7 +16,7 @@ function initialize_time_control(config)
         const next_scale = Number(raw_value);
         const normalized_scale = Number.isFinite(next_scale) ? next_scale : 1;
 
-        solar_system_state.time_scale = normalized_scale;
+        solarSystemState.time_scale = normalized_scale;
 
         const is_paused = normalized_scale <= 0;
         const css_time_scale = is_paused ? 1 : normalized_scale;
@@ -59,4 +59,4 @@ function initialize_time_control(config)
     apply_time_scale(slider.value);
 }
 
-window.initialize_time_control = initialize_time_control;
+export { initialize_time_control };

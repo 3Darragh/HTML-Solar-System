@@ -1,3 +1,5 @@
+import { solarSystemState } from "../state.js";
+
 /* Takes configs and starts starts the orbit simulation by placing objects and upading
 their positions based on the elapsed time and orbit by ID. */
 function start_orbit_simulation(config) 
@@ -134,7 +136,7 @@ function start_orbit_simulation(config)
 	function render_frame(now) 
 	{
 		const center = get_solar_center();
-		const state = window.solar_system_state ?? { time_scale: 1 };
+		const state = solarSystemState;
 
 		if (last_frame_time === null)
 		{
@@ -171,4 +173,4 @@ function start_orbit_simulation(config)
 	requestAnimationFrame(render_frame);
 }
 
-window.start_orbit_simulation = start_orbit_simulation;
+export { start_orbit_simulation };

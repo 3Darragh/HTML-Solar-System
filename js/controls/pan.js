@@ -1,9 +1,11 @@
+import { solarSystemState } from "../state.js";
+
 function initialize_pan_control(config)
 {
-    const { solar_root, solar_system_container } = config;
+    const { solar_system_container, apply_transform } = config;
 
     /* Simulation safety check. */
-    if (!solar_system_container || !window.apply_transform)
+    if (!solar_system_container || !apply_transform)
     {
         return;
     }
@@ -39,13 +41,13 @@ function initialize_pan_control(config)
         const delta_x = event.clientX - last_x;
         const delta_y = event.clientY - last_y;
 
-        window.solar_system_state.pan_x += delta_x;
-        window.solar_system_state.pan_y += delta_y;
+        solarSystemState.pan_x += delta_x;
+        solarSystemState.pan_y += delta_y;
 
         last_x = event.clientX;
         last_y = event.clientY;
 
-        window.apply_transform();
+        apply_transform();
     });
 
     /* When not dragging, sets dragging state to false and releases pointer capture. */
@@ -69,4 +71,4 @@ function initialize_pan_control(config)
     solar_system_container.addEventListener("pointercancel", stop_dragging);
 }
 
-window.initialize_pan_control = initialize_pan_control;
+export { initialize_pan_control };

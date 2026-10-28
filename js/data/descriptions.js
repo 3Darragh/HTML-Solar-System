@@ -1,4 +1,4 @@
-window.solar_system_descriptions =
+export const descriptions =
 {
     sun:
     {
@@ -113,7 +113,7 @@ window.solar_system_descriptions =
     {
         overview:
         [
-            "Pluto is a dwarf planet with a diameter of about 2,377 km and a mass near 1.31 × 10²² kg, only a tiny fraction of Earth's mass.",,
+            "Pluto is a dwarf planet with a diameter of about 2,377 km and a mass near 1.31 × 10²² kg, only a tiny fraction of Earth's mass.",
             "It orbits in the Kuiper Belt at an average distance of roughly 5.9 billion km (39.5 AU), and one orbit takes about 248 Earth years.",
             "Pluto rotates once every 6.4 Earth days and has a highly eccentric path around the Sun.",
             "Pluto has five moons, the largest being Charon which is about half the size of Pluto itself.",

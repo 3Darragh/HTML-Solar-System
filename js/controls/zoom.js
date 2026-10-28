@@ -1,9 +1,11 @@
+import { solarSystemState } from "../state.js";
+
 function initialize_zoom_control(config)
 {
     const { solar_root, solar_system_container } = config;
 
     /* Simulation safety check. */
-    if (!solar_root || !window.solar_system_state)
+    if (!solar_root)
     {
         return;
     }
@@ -13,19 +15,19 @@ function initialize_zoom_control(config)
     const zoom_step = 0.05;
 
     /* Zoom and pan safety checks. */
-    if (!Number.isFinite(window.solar_system_state.zoom))
+    if (!Number.isFinite(solarSystemState.zoom))
     {
-        window.solar_system_state.zoom = 1;
+        solarSystemState.zoom = 1;
     }
 
-    if (!Number.isFinite(window.solar_system_state.pan_x))
+    if (!Number.isFinite(solarSystemState.pan_x))
     {
-        window.solar_system_state.pan_x = 0;
+        solarSystemState.pan_x = 0;
     }
 
-    if (!Number.isFinite(window.solar_system_state.pan_y))
+    if (!Number.isFinite(solarSystemState.pan_y))
     {
-        window.solar_system_state.pan_y = 0;
+        solarSystemState.pan_y = 0;
     }
 
     /* Applies zoom and pan transforms simultaniously. Pan values are applied first and current
@@ -33,10 +35,8 @@ function initialize_zoom_control(config)
     function apply_transform()
     {
         solar_root.style.transformOrigin = "center center";
-        solar_root.style.transform = `translate(${window.solar_system_state.pan_x}px, ${window.solar_system_state.pan_y}px) scale(${window.solar_system_state.zoom})`;
+        solar_root.style.transform = `translate(${solarSystemState.pan_x}px, ${solarSystemState.pan_y}px) scale(${solarSystemState.zoom})`;
     }
-
-    window.apply_transform = apply_transform;
 
     /* Adjust pan position so that zooming in and out is centered on the current cursor position. */
     function center_zoom_on_cursor(p_cursor_x, p_cursor_y, p_current_zoom, p_target_zoom)
@@ -56,23 +56,23 @@ function initialize_zoom_control(config)
         /* Sets the new pan values by calculating the delta between the cursor and center, then 
         adjusting that to fit the scale ratio of the current and target zooms.
         */
-        const delta_x = p_cursor_x - center_x - window.solar_system_state.pan_x;
-        const delta_y = p_cursor_y - center_y - window.solar_system_state.pan_y;
+        const delta_x = p_cursor_x - center_x - solarSystemState.pan_x;
+        const delta_y = p_cursor_y - center_y - solarSystemState.pan_y;
         const scale_ratio = p_target_zoom / p_current_zoom;
 
-        window.solar_system_state.pan_x -= delta_x * (scale_ratio - 1);
-        window.solar_system_state.pan_y -= delta_y * (scale_ratio - 1);
+        solarSystemState.pan_x -= delta_x * (scale_ratio - 1);
+        solarSystemState.pan_y -= delta_y * (scale_ratio - 1);
     }
 
     /* Applies zoom transformation based off the zoom value and cursor coordinates.*/
     function apply_zoom(p_target_zoom, p_cursor_x, p_cursor_y) 
     {
         /* Stores the previous and current zoom values in two variables. */
-        const current_zoom = window.solar_system_state.zoom;
+        const current_zoom = solarSystemState.zoom;
         const raw_target_zoom = Number(p_target_zoom);
 
         /* Fallback zoom in case current zoom is not finite. */
-        const fallback_zoom = Number.isFinite(window.solar_system_state.zoom) ? window.solar_system_state.zoom : 1;
+        const fallback_zoom = Number.isFinite(solarSystemState.zoom) ? solarSystemState.zoom : 1;
 
         /* Normalizes the current zoom value and clamps it between the min and max zooms. */ 
         const normalized_zoom = Number.isFinite(raw_target_zoom) ? raw_target_zoom : fallback_zoom;
@@ -82,7 +82,7 @@ function initialize_zoom_control(config)
         center_zoom_on_cursor(p_cursor_x, p_cursor_y, current_zoom, clamped_target_zoom);
 
         /* Sets the zoom to the clamped target zoom and applies the transform. */
-        window.solar_system_state.zoom = clamped_target_zoom;
+        solarSystemState.zoom = clamped_target_zoom;
         apply_transform();
     }
 
@@ -96,13 +96,14 @@ function initialize_zoom_control(config)
             /* Determines zoom direction based on positive or negative delta, then applies zoom
             by the zoom step. */
             const direction = event.deltaY < 0 ? 1 : -1;
-            const current_zoom = window.solar_system_state.zoom + (direction * zoom_step);
+            const current_zoom = solarSystemState.zoom + (direction * zoom_step);
 
             apply_zoom(current_zoom, event.clientX, event.clientY);
         }, { passive: false });
     }
 
-    apply_zoom(window.solar_system_state.zoom);
+    apply_zoom(solarSystemState.zoom);
+    return apply_transform;
 }
 
-window.initialize_zoom_control = initialize_zoom_control;
+export { initialize_zoom_control };
