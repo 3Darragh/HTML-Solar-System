@@ -17,11 +17,11 @@ function initialize_info_panel(info_panel)
     }
 
     info_panel.innerHTML = `
-        <h2> HTML Educational Solar System </h2>
+        <h2> HTML Solar System </h2>
         <p> Click and drag to pan around the solar system. </p>
-        <p> Hover over a planet to view detailed information and sprite animation. </p>
-        <p> Move the slider to adjust the speed of rotation and revolution in the model. </p>
-        <p> Use the mouse wheel to zoom in and out for 10x the focus. </p>
+        <p> Hover over a planet to view it's information and sprite animation. </p>
+        <p> Move the slider to adjust the speed of rotation and revolution. </p>
+        <p> Use the mouse wheel to zoom in and out. </p>
 
         <p> Created by D McConville. </p>
     `;
